@@ -1,0 +1,16 @@
+VUE_APP_DEV_API_HOST={{optional, used for configuring the devServer proxy, i.e. localhost}}
+  
+VUE_APP_DEV_API_PORT={{optional, used for configuring the devServer proxy, i.e. 3000}}
+
+VUE_APP_SENTRY_DSN={{Sentry DSN, used for logging errors from the browser}}
+
+VUE_APP_BASE_URL={{base URL of the UI, i.e. http://localhost:8080 during dev}}
+
+
+
+
+
+
+
+
+    

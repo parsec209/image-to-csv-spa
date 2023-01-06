@@ -1,0 +1,109 @@
+<template>
+  <div class="container">
+    <br>
+    <b-row>
+      <b-col md="6" offset-md="3">
+        <b-card header-tag="header" footer-tag="footer">
+          <template #header>
+            <div class="text-center">
+              <b-alert :show="errorMsg.length" variant="danger">{{ errorMsg }}</b-alert>
+              <div v-if="isLoading">
+                <b-spinner variant="secondary" label="Loading"></b-spinner>
+                <br>
+                <br>
+              </div>   
+              <h3>Reset password</h3>
+            </div>
+          </template>
+          <b-card-text>
+            Enter the email address you used when registering your account and a password reset link will be emailed to you.
+          </b-card-text>
+          <br>
+          <b-form @submit.prevent="emailResetLink" @input="errorMsg = ''">
+            <b-form-group>
+              <b-form-input 
+                placeholder="Enter email" 
+                v-model="$v.form.email.$model" 
+                :state="$validateState($v.form.email)"
+                aria-describedby="email-live-feedback"
+              >
+              </b-form-input>
+              <b-form-invalid-feedback id="email-live-feedback">
+                Please enter your email
+              </b-form-invalid-feedback>
+            </b-form-group>
+            <br>
+            <b-button type="submit" variant="info" @click="errorMsg = ''">
+              Email password reset link
+            </b-button>
+          </b-form>
+          <template #footer>
+            <b-link to="/login">
+              Go to login
+            </b-link>
+          </template>
+        </b-card>
+      </b-col>
+    </b-row>
+  </div>
+</template>
+
+
+<script>
+import axios from 'axios'
+import { required, email } from 'vuelidate/lib/validators'
+
+export default {
+  name: 'UserPasswordForgot',
+  data() {
+    return {
+      form: {
+        email: ''
+      }, 
+      errorMsg: '',
+      isLoading: false
+    }
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      }
+    }
+  },
+  methods: {
+    async emailResetLink() {
+      this.$v.form.$touch()
+      if (!this.$v.form.$anyError) {
+        this.isLoading = true
+        try {          
+          await axios.post('/api/user/forgot', { email: this.form.email, resetURL: `${process.env.VUE_APP_BASE_URL}/reset/` })
+          this.$router.push({ 
+            name: 'UserLogin', 
+            params: { 
+              msg: { 
+                text: 'Password reset email sent. Please check spam folder if it doesn\'t appear within a few minutes.', 
+                context: 'success' 
+              }
+            }
+          })
+        } catch (err) {
+          this.errorMsg = this.$handleError(err)
+          this.isLoading = false
+        }
+      }
+    }
+  }
+}
+</script>
+
+
+<style scoped>
+.card-header {
+  border-bottom: none;
+}
+.card-footer {
+  border-top: none
+}
+</style>

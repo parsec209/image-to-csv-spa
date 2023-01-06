@@ -1,0 +1,80 @@
+[[redirects]]
+  from = "/api/user/register"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/register"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/login"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/login"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/logout"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/logout"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/forgot"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/forgot"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/reset/:token"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/reset/:token"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/change"
+  to = "https://image-to-csv-api.herokuapp.com/api/user/change"
+  status = 200
+
+[[redirects]]
+  from = "/api/headers/"
+  to = "https://image-to-csv-api.herokuapp.com/api/headers/"
+  status = 200
+
+[[redirects]]
+  from = "/api/headers/:id"
+  to = "https://image-to-csv-api.herokuapp.com/api/headers/:id"
+  status = 200
+
+[[redirects]]
+  from = "/api/docs/"
+  to = "https://image-to-csv-api.herokuapp.com/api/docs/"
+  status = 200
+
+[[redirects]]
+  from = "/api/docs/:id"
+  to = "https://image-to-csv-api.herokuapp.com/api/docs/:id"
+  status = 200
+
+[[redirects]]
+  from = "/api/transfers/upload"
+  to = "https://image-to-csv-api.herokuapp.com/api/transfers/upload"
+  status = 200
+
+[[redirects]]
+  from = "/api/transfers/extract"
+  to = "https://image-to-csv-api.herokuapp.com/api/transfers/extract"
+  status = 200
+
+[[redirects]]
+  from = "/api/transfers/write"
+  to = "https://image-to-csv-api.herokuapp.com/api/transfers/write"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
+
+
+
+

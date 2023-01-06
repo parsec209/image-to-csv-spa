@@ -1,0 +1,207 @@
+<template>
+  <div class="container">
+    <br>
+    <b-card header-tag="header">
+      <template #header>
+        <div class="text-center">  
+          <h3>Instructions</h3>
+        </div>
+      </template>
+      <br>
+      <p>This application generates CSV files from uploaded image files via the following steps:</p>
+      <br>
+      <ol>
+        <li>Performs OCR on a batch of image files</li>
+        <li>Gathers all of the relevant metadata from the extracted text</li>
+        <li>Places the metadata into specific records and fields of a CSV file</li>
+        <li>Outputs the CSV file for download</li>
+      </ol>  
+      <br>      
+      <p>
+        For each type of similarly-formatted document, called a <i>recurring document</i>, the user specifies a set of rules that enables the application to recognize an 
+        upload as one of its recurring documents, extract specific text from this document, and then place the metadata into specific records/fields of a generated CSV 
+        file. The ideal candidate for a recurring document is one that is received regularly (i.e. a specific invoice from a vendor) and that has predictable 
+        characteristics in its text and formatting each time it is received. In general, the only thing that should really change between each recurring document is the 
+        metadata values you need for the CSV file (i.e. invoice number, balance due, etc.). The use of <i>anchor phrases</i> (text that is positioned predictably in the 
+        image relative to other text) and <i>regular expressions</i> (predictable text patterns) are the two text retrieval methods this application uses. However, not 
+        all of the CSV values have to be found within the document text, there can also be user-specified custom values, or even Excel formulas that evaluate when the 
+        CSV file is opened in Excel. Additional features can be added to the values, such as date formatting (if the value is recognized as a date), adding days to a 
+        date, or character appendage to the end of a value. Lastly, there is the flexibility to combine multiple pieces of metadata together into a single CSV field. For 
+        example, you can use one rule for retrieving a statement number and another rule for the statement date, and combine these two values together into a single CSV 
+        field with a hyphen in between them (using the character appendage feature previously mentioned).
+      </p>
+      <br>
+      <p> 
+        You can add, edit, and delete recurring documents in the <b-link to="/index/doc">My recurring documents</b-link> page. This will be the starting point if this 
+        is your first time using the application. 
+        <br>
+        <br>
+        The list below includes instructions for individual sections of a recurring document setup page, as well as for the file upload page. For your convenience, 
+        many parts of these instructions are also embedded in the actual pages, just look for the question mark icons.
+      </p>
+      <b-icon icon="file-earmark-text"></b-icon>
+      <b-button v-b-toggle.doc-IDPhrase-guide variant="link">
+        Recurring document ID phrase
+      </b-button>
+      <b-collapse id="doc-IDPhrase-guide" class="mt-2">
+        <b-card>
+          <InstructionsDocID />
+        </b-card>
+      </b-collapse>
+      <br>
+      <b-icon icon="file-earmark-text"></b-icon>
+      <b-button v-b-toggle.doc-savedHeaders-guide variant="link">
+        Saved headers
+      </b-button>
+      <b-collapse id="doc-savedHeaders-guide" class="mt-2">
+        <b-card>
+          <InstructionsHeaders />
+        </b-card>
+      </b-collapse>
+      <br>
+      <b-icon icon="file-earmark-text"></b-icon>
+      <b-button v-b-toggle.doc-table-header-guide variant="link">
+        Table header row
+      </b-button>
+      <b-collapse id="doc-table-header-guide" class="mt-2">
+        <b-card>
+          <InstructionsHeaderCells />
+        </b-card>
+      </b-collapse>
+      <br>
+      <b-icon icon="file-earmark-text"></b-icon>
+      <b-button v-b-toggle.doc-table-body-guide variant="link">
+        Table data rows
+      </b-button>
+      <b-collapse id="doc-table-body-guide" class="mt-2">
+        <b-card>
+          <InstructionsDataCells />
+          <br>
+          <p>The <strong>string search methods</strong> within each cell section are as follows:</p>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-leftPhrase-guide  variant="link">
+            Anchor phrase - horizontal search
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-leftPhrase-guide" class="mt-2">
+            <b-card>
+              <InstructionsAnchorPhraseHorizontal />
+            </b-card>
+          </b-collapse>
+          <br>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-topPhrase-guide  variant="link">
+            Anchor phrase - vertical search
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-topPhrase-guide" class="mt-2">
+            <b-card>
+              <InstructionsAnchorPhraseVertical />
+            </b-card>
+          </b-collapse>
+          <br>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-textPattern-guide  variant="link">
+            Regular Expression
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-textPattern-guide" class="mt-2">
+            <b-card>
+              <InstructionsRegularExpression />
+            </b-card>
+          </b-collapse>
+          <br>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-customValue-guide  variant="link">
+            Custom value
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-customValue-guide" class="mt-2">
+            <b-card>
+              <InstructionsCustomValue />                           
+            </b-card>
+          </b-collapse>
+          <br>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-today-guide  variant="link">
+            Today's date
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-today-guide" class="mt-2">
+            <b-card>                            
+              <InstructionsTodayDate />                            
+            </b-card>
+          </b-collapse>
+          <br>
+          <b-button v-b-toggle.doc-body-cellSect-rules-searchInput-empty-guide  variant="link">
+            Empty cell
+          </b-button>
+          <b-collapse id="doc-body-cellSect-rules-searchInput-empty-guide" class="mt-2">
+            <b-card>                              
+              <InstructionsEmptySection />                             
+            </b-card>
+          </b-collapse>
+          <br>
+          <br>
+          <InstructionsSearchString /> 
+          <br>        
+          <InstructionsStringRetrievalType /> 
+          <br>
+          <br>        
+          <InstructionsStringCount /> 
+          <br>        
+          <InstructionsAppendChars /> 
+          <br>
+          <InstructionsFormatDate /> 
+          <br>
+          <InstructionsAddDays /> 
+        </b-card>
+      </b-collapse>
+      <br>
+      <b-icon icon="file-earmark-text"></b-icon>
+      <b-button v-b-toggle.uploads-guide variant="link">
+        Uploading files to generate a CSV
+      </b-button>
+      <b-collapse id="uploads-guide" class="mt-2">
+        <b-card>
+          <InstructionsUploads />
+        </b-card>
+      </b-collapse>
+    </b-card>
+  </div> 
+</template>
+
+
+<script>
+import InstructionsDocID from '../components/InstructionsDocID'
+import InstructionsHeaders from '../components/InstructionsHeaders'
+import InstructionsHeaderCells from '../components/InstructionsHeaderCells'
+import InstructionsDataCells from '../components/InstructionsDataCells'
+import InstructionsAnchorPhraseHorizontal from '../components/InstructionsAnchorPhraseHorizontal'
+import InstructionsAnchorPhraseVertical from '../components/InstructionsAnchorPhraseVertical'
+import InstructionsRegularExpression from '../components/InstructionsRegularExpression'
+import InstructionsCustomValue from '../components/InstructionsCustomValue'
+import InstructionsTodayDate from '../components/InstructionsTodayDate'
+import InstructionsEmptySection from '../components/InstructionsEmptySection'
+import InstructionsSearchString from '../components/InstructionsSearchString'
+import InstructionsStringRetrievalType from '../components/InstructionsStringRetrievalType'
+import InstructionsStringCount from '../components/InstructionsStringCount'
+import InstructionsAppendChars from '../components/InstructionsAppendChars'
+import InstructionsFormatDate from '../components/InstructionsFormatDate'
+import InstructionsAddDays from '../components/InstructionsAddDays'
+import InstructionsUploads from '../components/InstructionsUploads'
+
+
+export default {
+  name: 'AppInstructions',
+  components: {
+    InstructionsDocID,
+    InstructionsHeaders,
+    InstructionsHeaderCells,
+    InstructionsDataCells,
+    InstructionsAnchorPhraseHorizontal,
+    InstructionsAnchorPhraseVertical,
+    InstructionsRegularExpression,
+    InstructionsCustomValue,
+    InstructionsTodayDate,
+    InstructionsEmptySection,
+    InstructionsSearchString,
+    InstructionsStringRetrievalType,
+    InstructionsStringCount,
+    InstructionsAppendChars,
+    InstructionsFormatDate,
+    InstructionsAddDays,
+    InstructionsUploads
+  }
+}
+</script>
