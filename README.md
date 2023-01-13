@@ -1,6 +1,6 @@
 # Image-To-CSV-SPA
 
-Single page app that serves as a demo UI for the Image-To-CSV API, see https://github.com/ryanjg08/Image-to-csv-api.
+Single page app that serves as a demo UI for the Image-To-CSV API, see https://github.com/parsec209/Image-to-csv-api.
 
 
 ## Quick Start

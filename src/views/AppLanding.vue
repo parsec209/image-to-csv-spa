@@ -48,7 +48,7 @@
             <br>
             <br>
             <p>View, modify, and contribute to the code.</p>
-            <b-button variant="secondary" href="https://github.com/ryanjg08/image-to-csv-spa">
+            <b-button variant="secondary" href="https://github.com/parsec209/image-to-csv-spa">
               UI on Github
             </b-button>
           </b-card-text>
@@ -63,7 +63,7 @@
             <br>
             <br>
             <p>Access the API directly.</p>
-            <b-button variant="secondary" href="https://github.com/ryanjg08/image-to-csv-api">
+            <b-button variant="secondary" href="https://github.com/parsec209/image-to-csv-api">
               API on Github
             </b-button>
           </b-card-text>
