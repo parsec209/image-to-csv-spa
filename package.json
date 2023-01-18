@@ -2,7 +2,7 @@
   "name": "image-to-csv-spa",
   "version": "1.0.0",
   "private": true,
-  "description": "SPA that utilizes the Image-To-CSV API",
+  "description": "Single page app that serves as a demo UI for the Image-To-CSV API.",
   "engines": {
     "node": "16.x"
   },
