@@ -9,7 +9,7 @@ export const handleError = function(error) {
   if (error.response) {
     const message = error.response.data.message || error.response.data
     //Automatically logout if unauthenticated API call is made while already logged in (i.e. server session has expired)
-    if (error.response.status === 401 && store.getters.sessionChecked && router.currentRoute.name !== 'Login') {
+    if (error.response.status === 401 && store.getters.sessionChecked && router.currentRoute.name !== 'UserLogin') {
       store.dispatch('setUser', null)
       return router.push({ 
         name: 'UserLogin', 
