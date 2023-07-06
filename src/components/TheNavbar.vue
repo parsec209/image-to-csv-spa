@@ -1,14 +1,16 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="dark">
+  <b-navbar toggleable="lg" type="light" variant="light">
     <div class="container">
       <b-navbar-brand to="/">
-        Image-To-CSV
+        <b-img src="../../public/favicon.png" fluid width="50" height="50" alt="" class="mr-2"></b-img>
+        <strong >Image-To-CSV</strong>
+
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/instructions">
-            Instructions
+            Overview
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav v-if="user" class="ml-auto">
