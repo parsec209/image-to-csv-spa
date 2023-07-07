@@ -3,7 +3,6 @@
     <header>
       <TheNavbar />
     </header>
-    <br>
     <main class="flex-shrink-0">
       <div class="container text-center" v-if="!$store.getters.sessionChecked">
         <br>
@@ -47,6 +46,7 @@ export default {
 html, body {
   height: 100%!important; 
 }
+
 body {
   background: linear-gradient(#cfecda,#fff);
   background-repeat: no-repeat;
