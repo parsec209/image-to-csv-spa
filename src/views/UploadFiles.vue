@@ -113,10 +113,10 @@ export default {
         },
         files: { 
           required,
-          maxLength: maxLength(20),
+          maxLength: maxLength(40),
           $each: {
             size: {
-              maxValue: maxValue(10 * 1024 * 1024)
+              maxValue: maxValue(30 * 1024 * 1024)
             }
           }
         }
